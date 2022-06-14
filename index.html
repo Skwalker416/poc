@@ -1,3 +1,4 @@
+<html>
 input = document.body.appendChild(document.createElement("input"));
 
 foo = document.body.appendChild(document.createElement("a"));
@@ -20,4 +21,4 @@ setTimeout(() => {
         input.onblur = () => history.replaceState("state3", "");
         setTimeout(() => history.back(), 1000);
 }, 1000);
-
+</html>
