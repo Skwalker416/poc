@@ -1,0 +1,27 @@
+<html>
+<body>
+</body>
+<script type="text/javascript">
+input = document.body.appendChild(document.createElement("input"));
+
+foo = document.body.appendChild(document.createElement("a"));
+foo.id = "foo";
+
+// Go to state1 when history.back is called
+// The URL needs to be <currentPage+hash> to trigger loadInSameDocument during the call to back()
+// Since the foo's element id="foo", focus will change to that element
+history.pushState("state1", "", location + "#foo");
+
+// Current state = state2
+history.pushState("state2", "");
+
+setTimeout(() => {
+        // Set the focus on the input element.
+        // During the call to back() the focus will change to the foo element 
+        // and therefore triggering the blur event on the input element
+        input.focus(); 
+        input.onblur = () => history.replaceState("state3", "");
+        setTimeout(() => history.back(), 100);
+}, 1000);
+</script>
+</html>
